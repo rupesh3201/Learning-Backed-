@@ -24,14 +24,24 @@ app.post("/todos", (req, res) => {
 
     console.log("Request Body:", req.body);
 
-    const { todoItem } = req.body;
+    const { todoItem, priority ,emoji } = req.body;
+
+    const TodoObj = {
+        id : Math.floor(Math.random()*1000),
+        todoItem : todoItem , 
+        priority : priority,
+        emoji : emoji,
+        isDone : false,
+        createdAt : new Date().toISOString(),
+        upadtedAt : new Date().toISOString(),
+     }
 
     if (!todoItem) {
         return res.status(400).json({
             success: false,
             message: "Todo item required"
         });
-        TODO_ITEMS.push(todoItem);
+        TODO_ITEMS.push(TodoObj);
     }
 
 
